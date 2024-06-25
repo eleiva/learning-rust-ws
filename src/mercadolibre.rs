@@ -55,7 +55,7 @@ pub fn menu() -> Menu {
 }
 
 fn search_in_ml(q: String) -> MLSearchResult {
-    let url = format!("https://api.mercadolibre.com/sites/MLA/search?q={q}");
+    let url = format!("https://api.mercadolibre.com/sites/MLA/search?q={q}&sort=price_asc&limit=5");
 
     let data: String = reqwest::blocking::get(url).unwrap().text().unwrap();
 
