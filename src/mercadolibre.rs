@@ -1,8 +1,5 @@
-use std::fmt::format;
-
 use serde::{Deserialize, Serialize};
 extern crate reqwest;
-use log::debug;
 
 #[derive(Serialize)]
 pub struct MenuItem {

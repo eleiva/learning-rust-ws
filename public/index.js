@@ -19,10 +19,10 @@ ws.addEventListener("message", function (event) {
     let formatted_message = "";
 
     const message_tmpl = `
-        <div class="chat-message">
+        <div class="chat-message border-gray-300">
             <div class="flex items-end">
                 <div class="flex flex-col space-y-2 max-w-xs mx-2 order-2 items-start">
-                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">{{message}}</span></div>
+                    <div><span style="border: 1px solid;" class="px-4 py-2 rounded-lg inline-block rounded-bl-none text-gray-600">{{message}}</span></div>
                 </div>
                 <img src="bot.webp"
                     alt="My profile" class="w-6 h-6 rounded-full order-1">
@@ -111,7 +111,7 @@ ws.addEventListener('close', function (event) {
     // document.getElementById('status').textContent = 'Estado: Desconectado';    
     setTimeout(function () {
         //const ws = new WebSocket("ws://127.0.0.1:3012");
-        location.reload();
+       // location.reload();
     }, 3000); // Recarga la página después de 3 segundos
 });
 
@@ -143,7 +143,7 @@ function buildSearch(search) {
     let output = "<span>" + search.msg + "</span><ul>";
 
     search.items.forEach(function (item) {
-        output += "<a target='_blank' href=" + item.link + "><li style='border: 1px dotted #0000004d;padding:10px;'><strong>" + item.title + "</strong><img src='" + item.images[0] + "' alt='Italian Trulli'><span>$ " + item.price + "</span></li></a>";
+        output += "<a target='_blank' href=" + item.link + "><li style='background-color: white; border: 1px dotted #0000004d;padding:10px;margin:5px;'><strong>" + item.title + "</strong><img src='" + item.images[0] + "' alt='Italian Trulli'><span>$ " + item.price + "</span></li></a>";
     });
 
     output += "</ul>"

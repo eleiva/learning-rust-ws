@@ -6,7 +6,6 @@ pub struct GenericResponse {
     msg: String,
 }
 
-const MENU: &'static str = "menu";
 const SEARCH: &'static str = "buscar";
 const IS_CONNECTED: &'static str = "is_connected";
 
