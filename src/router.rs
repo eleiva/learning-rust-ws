@@ -8,6 +8,7 @@ pub struct GenericResponse {
 
 const MENU: &'static str = "menu";
 const SEARCH: &'static str = "buscar";
+const IS_CONNECTED: &'static str = "is_connected";
 
 pub fn route(msg: String) -> GenericResponse {
     let response_msg: String;
@@ -19,17 +20,20 @@ pub fn route(msg: String) -> GenericResponse {
     debug!("{}", key);
 
     match key {
-        MENU => {
-            let data = rustws::mercadolibre::menu();
-
-            response_msg = serde_json::to_string(&data).unwrap();
-        }
         SEARCH => {
             let data = rustws::mercadolibre::search(rest.to_string());
 
             response_msg = serde_json::to_string(&data).unwrap();
         }
-        _ => response_msg = "Opcion invalida".to_string(),
+        IS_CONNECTED => {
+            response_msg = "Hola! En que puedo ayudarte hoy?".to_string();
+        }
+
+        _ => {
+            let data = rustws::mercadolibre::menu();
+
+            response_msg = serde_json::to_string(&data).unwrap();
+        }
     }
 
     GenericResponse { msg: response_msg }

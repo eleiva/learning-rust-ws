@@ -16,7 +16,7 @@ const CLIENT_UNRESPONSIVE: Token = Token(1);
 
 impl Handler for Server {
     fn on_open(&mut self, _: Handshake) -> ws::Result<()> {
-        self.out.timeout(15_000, CLIENT_UNRESPONSIVE)?;
+        self.out.timeout(60_000, CLIENT_UNRESPONSIVE)?;
         self.out.timeout(5_000, PING)
     }
 
@@ -81,7 +81,6 @@ impl Handler for Server {
         debug!("Handler received timeout token: {:?}", event);
         match event {
             PING => {
-                println!("Pinging the client");
                 self.out.ping("".into())?;
                 self.out.timeout(5_000, PING)
             }
@@ -178,7 +177,7 @@ impl Handler for Server {
 fn main() {
     pretty_env_logger::init();
 
-    let addr = "127.0.0.1:3012";
+    let addr = "0.0.0.0:3012";
 
     println!("Ws running at {}", addr);
 
